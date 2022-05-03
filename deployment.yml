@@ -1,40 +1,91 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: nodejs-helloworld-deployment
   namespace: kube-system
-  name: nodejs-deployment
   labels:
-    app: helloworld
+    app: nodejs-helloworld
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: helloworld
+      app: nodejs-helloworld
+      release: production
   template:
     metadata:
       labels:
-        app: helloworld
+        app: nodejs-helloworld
+        release: production
     spec:
       containers:
-      - name: helloworld
-        image: teodora95/node-helloworld
+      - name: nodejs-helloworldserver
+        image: teodora95/nodejs-helloworld-repo:latest
+        imagePullSecrets:
+        - name: regcred2
         ports:
         - containerPort: 80
-       
+        
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
+  name: nodejs-helloworld-service
   namespace: kube-system
-  name: nodejs-service
   labels:
-    app: helloworld
+    app: nodejs-helloworld
 spec:
-  type: NodePort
+  externalTrafficPolicy: Local
   ports:
-  - port: 80
+  - name: http
+    port: 80
     protocol: TCP
     targetPort: 80
-    nodePort: 32121
   selector:
-    app: helloworld
+      app: nodejs-helloworld
+  type: NodePort
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: clusterip-service
+  namespace: kube-system
+  labels:
+    app: nodejs-helloworld
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+      app: nodejs-helloworld
+  type: ClusterIP
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  namespace: kube-system
+  labels:
+    app: nodejs-helloworld
+spec:
+  selector:
+    app: nodejs-helloworld
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-xn-service
+  namespace: kube-system
+  labels:
+    app: nodejs-helloworld
+spec:
+  type: ExternalName
+  externalName: nodejshelloworldexternal.com
