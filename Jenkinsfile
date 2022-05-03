@@ -1,7 +1,7 @@
 pipeline{
   environment {
-    registry = "sampath5/node-helloworld"
-    registryCredential = 'dockerhub'
+    registry = "teodora95/node-helloworld"
+    registryCredential = 'dockerhub-cred-raja'
     dockerImage = ''
   }
   agent any
