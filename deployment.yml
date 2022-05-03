@@ -48,7 +48,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: clusterip-service
+  name: nodejs-helloworld-clusterip-service
   namespace: kube-system
   labels:
     app: nodejs-helloworld
@@ -65,7 +65,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: lb-service
+  name: nodejs-helloworld-lb-service
   namespace: kube-system
   labels:
     app: nodejs-helloworld
@@ -82,7 +82,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-xn-service
+  name: nodejs-helloworld-my-xn-service
   namespace: kube-system
   labels:
     app: nodejs-helloworld
