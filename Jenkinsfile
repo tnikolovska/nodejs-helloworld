@@ -3,9 +3,9 @@ node {
     checkout scm
    
 
-    docker.withRegistry('docker.io/teodora95/nodejs-helloworld-registry', 'dockerhub-cred-raja') {
+    docker.withRegistry('docker.io/teodora95/nodejs-helloworld-repo', 'dockerhub-cred-raja') {
 
-        def customImage = docker.build("teodora95/nodejs-helloworld-registry","-f Dockerfile .")
+        def customImage = docker.build("teodora95/nodejs-helloworld-repo","-f Dockerfile .")
 
         /* Push the container to the custom Registry */
         customImage.push("1.0.0")
