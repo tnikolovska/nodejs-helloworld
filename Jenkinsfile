@@ -10,6 +10,6 @@ node {
         /* Push the container to the custom Registry */
         customImage.push("1.0.0")
         
-        kubernetesDeploy(configs:"deployment.yml",kubeconfigId:"kubernetes")
+        kubernetesDeploy(configs:"deployment.yaml",kubeconfigId:"kubernetes")
     }
 }
