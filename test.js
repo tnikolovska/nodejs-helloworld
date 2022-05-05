@@ -6,7 +6,7 @@ describe("Hello World Server", function(done) {
   describe("GET /", function() {
     it("Main page content", function(done) {
       request.get(base_url, function(error, response, body) {
-        expect(body).to.equal('Hello Guys!!');
+        expect(body).toBe('Hello Guys!!');
       });
     });
   });
