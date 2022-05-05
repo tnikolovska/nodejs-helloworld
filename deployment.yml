@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodejs-helloworld
-        image: teodora95/nodejs-helloworld-repo:1.0.0
+        image: teodora95/nodejs-helloworld-repo:latest
         ports:
         - containerPort: 80
 ---        
