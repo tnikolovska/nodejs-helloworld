@@ -3,4 +3,4 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{"msg": "testing"}'
 
-curl http://localhost:8000/test
+curl http://localhost:8000
