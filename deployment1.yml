@@ -7,4 +7,13 @@ metadata:
     app: nodejs-helloworld
 spec:
   type: ExternalName
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-helloworld-my-xn-service
+  namespace: kube-system
+  labels:
+    app: nodejs-helloworld
+spec:
+  type: ExternalName
   externalName: nodejshelloworldexternal.com
