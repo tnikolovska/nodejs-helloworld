@@ -11,6 +11,22 @@ spec:
   type: LoadBalancer
   ports:
   - name: http
+    port: 8000
+    protocol: TCP
+    targetPort: 31353
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-helloworld-lb-service
+  namespace: kube-system
+  labels:
+    app: nodejs-helloworld
+spec:
+  selector:
+    app: nodejs-helloworld
+  type: LoadBalancer
+  ports:
+  - name: http
     port: 80
     protocol: TCP
     targetPort: 80
