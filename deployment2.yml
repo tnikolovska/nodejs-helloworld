@@ -8,6 +8,22 @@ metadata:
 spec:
   ports:
   - name: http
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+      app: nodejs-helloworld
+=======
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-helloworld-clusterip-service
+  namespace: kube-system
+  labels:
+    app: nodejs-helloworld
+spec:
+  ports:
+  - name: http
     port: 80
     protocol: TCP
     targetPort: 80
